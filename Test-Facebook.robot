@@ -40,19 +40,19 @@ Search
     Wait Until Page Contains Element    xpath: //*[contains(text(), "Search results for")]
     Sleep    3s
 
-Watch Button in Facebook 
+Show Watch Page
     [tags]    Click watch success
     Click Button Watch    ${btn_watch} 
     Wait Until Page Contains Element    xpath: //*[contains(text(), "watch")]
     Sleep    3s
 
-Show Group
+Show Group Page
     [tags]    Show more group
     Click Button Group    ${btn_group}
     Wait Until Page Contains Element    xpath: //div[@aria-label='Preview of a group']    
     Sleep    3s
 
-Show Notification
+Show Notification Tabs
     [tags]    Click Notification
     Click Button Notification    ${btn_noti}
     Wait Until Page Contains Element    xpath: //div[@aria-label='Notifications'][@role='dialog']
