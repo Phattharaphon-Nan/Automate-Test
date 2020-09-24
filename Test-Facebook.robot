@@ -1,6 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary
-Library    Timer    
+Library    SeleniumLibrary   
 
 
 *** Variable ***
@@ -8,13 +7,16 @@ ${url_facebook}    http://www.facebook.com
 ${input_user}      //*[@id="email"]
 ${input_pass}      //*[@id="pass"]
 ${btn_login}       name=login
-${username_success}            your Usename
-${password_success}            your Password
+${username_success}            p_nan29@hotmail.com
+${password_success}            loibandit1999
+${search}    //input[@type='search']
+${search_keyword}    Tester Thailand
+${pageContainKeyword}    Tester - Thailand
 ${btn_watch}    //a[@href='/watch/']
-${btn_noti}    //*[@id="mount_0_0"]/div/div[1]/div[1]/div[2]/div[4]/div[1]/div[1]/span/div/div[1]
-${btn_group}    //*[@id="mount_0_0"]/div/div[1]/div[1]/div[2]/div[3]/div/div[1]/div[1]/ul/li[4]/span/div
-${btn_setting}    //*[@id="mount_0_0"]/div/div[1]/div[1]/div[2]/div[4]/div[1]/span/div/div[1]
-${btn_logout}    //span[contains(text(), 'Log Out')]
+${btn_noti}    //div[@aria-label='Notifications'][@role='button']
+${btn_group}    //a[@href='/groups/']
+${btn_setting}    //div[@aria-label='Account']
+#${btn_logout}    //span[contains(text(),'Log out')]
 
 *** Test Case ***
 
@@ -28,36 +30,40 @@ Login Facebook - success
     maximize Browser window
     Input Username and Password    ${input_user}     ${input_pass}       ${username_success}      ${password_success}
     Click Button Login    ${btn_login}
+    Wait Until Page Contains Element    Id:ssrb_root_start
+    Sleep    3s
 
+Search
+    [tags]    Search text success
+    Input text    ${search}    ${search_keyword}
+    Press Keys    ${search}    ENTER
+    Wait Until Page Contains Element    xpath: //*[contains(text(), "Search results for")]
+    Sleep    3s
 
 Watch Button in Facebook 
     [tags]    Click watch success
     Click Button Watch    ${btn_watch} 
     Wait Until Page Contains Element    xpath: //*[contains(text(), "watch")]
-    Sleep    2s
+    Sleep    3s
 
 Show Group
     [tags]    Show more group
     Click Button Group    ${btn_group}
     Wait Until Page Contains Element    xpath: //div[@aria-label='Preview of a group']    
-    Sleep    2s
+    Sleep    3s
 
-Show Notofication
+Show Notification
     [tags]    Click Notification
     Click Button Notification    ${btn_noti}
     Wait Until Page Contains Element    xpath: //div[@aria-label='Notifications'][@role='dialog']
-    Sleep    2s
-
-Show Setting 
-    [tags]    Show more Setting
-    Click Button Setting    ${btn_setting}    
     Sleep    1s
 
-Log out
+Setting Facebook
     [tags]    Log out Facebook
-    Click Button Logout    ${btn_logout}
+    Click Button Setting    ${btn_setting}    
+    #Click Button Logout    ${btn_logout}
     Sleep    3s
-
+    #Close Browser
 
 *** Keywords ***
 
@@ -69,33 +75,32 @@ Input Username and Password
     Input Text       ${xpath_pass}       ${password}
 
 Click Button Login
-    [Arguments]    ${login_btn}
-    Wait Until Element Is Visible    ${login_btn}    
+    [Arguments]    ${login_btn} 
     Click Element    ${login_btn}   
 
+Search
+    [Arguments]    ${search_txt}    ${btn_enter}
+    Input Text    ${search_txt}
+    click Element    ${btn_enter}
+    
 Click Button Watch 
-    [Arguments]    ${watch_btn}
-    Wait Until Element Is Visible    ${watch_btn}    
+    [Arguments]    ${watch_btn} 
     Click Element    ${watch_btn}   
 
 Click Button Group
     [Arguments]    ${group_btn}
-    Wait Until Element Is Visible    ${group_btn}
     Click Element    ${group_btn}
 
 
 Click Button Notification
     [Arguments]    ${noti_btn}
-    Wait Until Element Is Visible    ${noti_btn}
     Click Element    ${noti_btn}
 
 
 Click Button Setting
     [Arguments]    ${set_btn}
-    Wait Until Element Is Visible    ${set_btn}
     Click Element    ${set_btn}
 
-Click Button Logout
-    [Arguments]    ${out_btn}
-    Wait Until Element Is Visible    ${out_btn}
-    Click Element    ${out_btn}
+#Click Button Logout
+    #[Arguments]    ${log_btn}
+    #Click Element    ${log_btn}
