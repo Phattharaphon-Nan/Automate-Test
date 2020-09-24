@@ -33,8 +33,8 @@ class LoginFacebook(unittest.TestCase):
         password = driver.find_element_by_xpath("//*[@id='pass']")
         login = driver.find_element_by_name('login')
 
-        username.send_keys("Your Email")
-        password.send_keys("Your Password")
+        username.send_keys("p_nan29@hotmail.com")
+        password.send_keys("loibandit1999")
         login.click()
         try:
             myElem = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'ssrb_root_start')))
@@ -44,6 +44,15 @@ class LoginFacebook(unittest.TestCase):
             print("Loading took too much time!")
             assert False
         
+         # Function search 
+        search_input = driver.find_element_by_xpath("//input[@type='search']")
+        search_input.send_keys("Tester Thailand") 
+        search_input.send_keys(Keys.ENTER) 
+        time.sleep(3) 
+        if driver.find_element_by_xpath("//h1[contains(text(), 'Search results for')]") and 'Tester Thailand' in driver.page_source:
+            assert True
+        else:
+            assert False
 
         #function 'Watch Button'
         btn_watch = driver.find_element_by_xpath("//a[@href='/watch/']")
