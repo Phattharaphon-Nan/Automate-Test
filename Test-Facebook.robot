@@ -7,8 +7,8 @@ ${url_facebook}    http://www.facebook.com
 ${input_user}      //*[@id="email"]
 ${input_pass}      //*[@id="pass"]
 ${btn_login}       name=login
-${username_success}            p_nan29@hotmail.com
-${password_success}            loibandit1999
+${username_success}            your email
+${password_success}            your password
 ${search}    //input[@type='search']
 ${search_keyword}    Tester Thailand
 ${pageContainKeyword}    Tester - Thailand
