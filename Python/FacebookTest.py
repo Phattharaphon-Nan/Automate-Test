@@ -33,8 +33,8 @@ class LoginFacebook(unittest.TestCase):
         password = driver.find_element_by_xpath("//*[@id='pass']")
         login = driver.find_element_by_name('login')
 
-        username.send_keys("p_nan29@hotmail.com")
-        password.send_keys("loibandit1999")
+        username.send_keys("your email")
+        password.send_keys("your password")
         login.click()
         try:
             myElem = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'ssrb_root_start')))
